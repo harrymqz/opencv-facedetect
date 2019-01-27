@@ -37,12 +37,12 @@ int main( int argc, const char** argv )
     // 2. Load the cascades
     if ( !face_cascade.load( face_cascade_name ) )
     {
-        cout << "--(!)Error loading face cascade\n";
+        cout << "Error loading face cascade\n";
         return -1;
     };
     if ( !eyes_cascade.load( eyes_cascade_name ) )
     {
-        cout << "--(!)Error loading eyes cascade\n";
+        cout << "Error loading eyes cascade\n";
         return -1;
     };
 
@@ -53,7 +53,7 @@ int main( int argc, const char** argv )
     capture.open( camera_device );
     if ( ! capture.isOpened() )
     {
-        cout << "--(!)Error opening video capture\n";
+        cout << "Error opening video\n";
         return -1;
     }
 
@@ -62,7 +62,7 @@ int main( int argc, const char** argv )
     {
         if ( frame.empty() )
         {
-            cout << "--(!) No captured frame -- Break!\n";
+            cout << "No image, exiting!\n";
             break;
         }
 
@@ -88,7 +88,7 @@ void detectAndDisplay( Mat frame )
     cvtColor( frame, frame_gray, COLOR_BGR2GRAY );
     equalizeHist( frame_gray, frame_gray );
 
-    //-- Detect faces
+    // Detect faces
     std::vector<Rect> faces;
     face_cascade.detectMultiScale( frame_gray, faces );
 
